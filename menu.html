@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    table{
+        border: 1px solid;
+    }
+    th, td{
+        border: 1px solid;
+    }
+    img{
+        width: 100px;
+    }
+    .box{
+        display: flex;
+    }
+    #order{
+        width: 300px;
+        height: 300px;
+        background-color: paleturquoise;
+    }
+</style>
+<body>
+<form>
+    <fieldset>
+        <legend>Add Drink</legend>
+        <input type="text" id="drink-name" placeholder="Input drink name...">
+        <input type="text" id="drink-price" placeholder="Input drink price...">
+        <input type="text" id="drink-image" placeholder="Input drink image...">
+        <button type="button" onclick="addDrink()">Add</button>
+    </fieldset>
+</form>
+<div class="box">
+    <table id="menu" border="1px solid">
+    </table>
+    <br>
+    <div id="order"></div>
+
+</div>
+
+
+<script>
+    let menu = [
+        ["Lipton",30000,'https://bizweb.dktcdn.net/thumb/grande/100/295/329/products/tra-den-lipton-vi-chanh-chai-500ml-300x300.jpg?v=1538193789517'],
+        ["Trà Đào",10000,'https://res.klook.com/image/upload/v1596017380/blog/fdhbsx1x6tmyswssvb1v.jpg'],
+        ["Coffee",20000,'https://upload.wikimedia.org/wikipedia/commons/4/45/A_small_cup_of_coffee.JPG']
+    ];
+
+
+
+    function display() {
+        let str = "<tr>" +
+            "<th>Drink Name</th>"+
+            "<th>Price</th>"+
+            "<th>Image</th>"+
+            "<th colspan='2'>Action</th>"+
+            "</tr>";
+        for (let i = 0; i < menu.length; i++) {
+            // str += '<tr>' +
+            //             '<td>'+menu[i]+'</td>' +
+            //             '<td><button onclick="updateDrink('+i+')">Update</button></td>' +
+            //             '<td><button onclick="deleteDrink('+i+')">Delete</button></td>' +
+            //         '</tr>';
+
+            str += `<tr>
+                        <td>${menu[i][0]}</td>
+                        <td>${menu[i][1]}</td>
+                        <td><img src="${menu[i][2]}" alt=""></td>
+                        <td><button onclick="updateDrink(${i})">Update</button></td>
+                        <td><button onclick="deleteDrink(${i})">Delete</button></td>
+                    </tr>`;
+        }
+        document.getElementById('menu').innerHTML = str;
+    }
+
+    display();
+
+    //
+    // function addDrink() {
+    //     let name = document.getElementById('drink-name').value;
+    //     let price = document.getElementById('drink-price').value;
+    //     let image = document.getElementById('drink-image').value;
+    //     if(name != "" && price !=""){
+    //         let drink = [name,price,image];
+    //         menu.push(drink);
+    //         display();
+    //         resetInput();
+    //     }else {
+    //         alert("Please input name");
+    //     }
+    //
+    // }
+    //
+    function deleteDrink(index) {
+
+        // menu.splice(index,1);
+        console.log(index);
+
+
+        let str = menu.splice(index,1).toString();
+        console.log(typeof str);
+        let ar = str.split(',');
+        console.log(index);
+        console.log(ar);
+
+        document.getElementById('order').innerHTML = "<table>"+"<tr>" +
+            "<caption>Order</caption>" +
+            "<th>Drink Name</th>"+
+            "<th>Price</th>"+
+            "<th >image</th>"+
+            "</tr>" +
+            "<tr>" + "<td>"+ar[0]+"<td>"+ar[1]+"<td><img src="+ ar[2] +" alt=''> "+"</tr>" +"</table>";
+        // display();
+    }
+    //
+    // function updateDrink(index) {
+    //     let newName = prompt("Input new name: ",menu[index][0]);
+    //     let newPrice = prompt("Input new price: ",menu[index][1]);
+    //     let newImage = prompt("Input new image: ",menu[index][2]);
+    //     let drink = [newName,newPrice,newImage];
+    //     menu[index] = drink;
+    //     display();
+    // }
+    //
+    // function resetInput() {
+    //     document.getElementById('drink-name').value = "";
+    //     document.getElementById('drink-price').value = "";
+    //     document.getElementById('drink-image').value = "";
+    // }
+</script>
+
+</body>
+</html>

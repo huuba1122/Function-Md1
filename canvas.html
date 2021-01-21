@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas onmousedown="show_coords(event)" id = "myCanvas" width = "400" height = "200"
+        style = "border: 1px solid Black;">
+</canvas>
+
+<script>
+
+    function show_coords(event)
+    {
+        var x=event.clientX;
+        var y=event.clientY;
+        alert("X coords: " + x + ", Y coords: " + y);
+    }
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.moveTo(190,23);
+    ctx.lineTo(169,96);
+    ctx.lineTo(103,105);
+    ctx.lineTo(169,96);
+    ctx.stroke();
+</script>
+</body>
+</html>
